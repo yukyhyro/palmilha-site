@@ -80,12 +80,25 @@ export function getSensorPositions(side, sensorNames) {
   return count <= 5 ? LEFT_5 : LEFT_9;
 }
 
-/** Contorno estilizado da palmilha — pontos-âncora para Catmull-Rom */
+/**
+ * Contorno estilizado do pé ESQUERDO com dedos visíveis.
+ * Percurso: dedão (medial) → dedos menores (lateral) → borda lateral →
+ * arco → calcanhar → borda medial → volta ao dedão.
+ * Pé direito = espelhamento horizontal (100 - x).
+ */
 const FOOT_ANCHORS = [
-  [55, 3], [68, 8], [76, 18], [82, 30], [80, 42],
-  [76, 55], [78, 68], [68, 88], [50, 95], [32, 88],
-  [22, 68], [24, 55], [20, 42], [22, 30], [28, 18],
-  [35, 8], [45, 3],
+  // Dedão (hálux)
+  [70, 14], [68, 7], [64, 3], [59, 6], [57, 12],
+  // Dedos menores
+  [52, 7], [49, 12], [45, 7], [41, 12], [37, 8], [33, 13], [29, 10],
+  // Borda lateral
+  [24, 16], [20, 24], [17, 33], [16, 40],
+  // Arco lateral (cintura)
+  [19, 50], [22, 58], [24, 64],
+  // Calcanhar
+  [27, 74], [33, 84], [42, 92], [50, 96], [58, 92], [67, 84], [73, 74],
+  // Borda medial (mais reta)
+  [76, 64], [78, 54], [80, 44], [81, 34], [79, 24], [75, 18],
 ];
 
 export function getFootOutlinePath(mirror = false) {
