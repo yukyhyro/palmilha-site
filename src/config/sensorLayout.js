@@ -91,29 +91,27 @@ export function getSensorPositions(side, sensorNames) {
 }
 
 /**
- * Pontos âncora do contorno do pé (vista plantar com dedos visíveis).
+ * Pontos âncora do contorno da PALMILHA (formato de insole, sem dedos individuais).
  * Coordenadas em espaço 0-100.
  *
  * Vista PLANTAR do pé DIREITO:
- *   - Dedão (hálux) no lado ESQUERDO (medial)
- *   - Mindinho no lado DIREITO (lateral)
+ *   - Lado medial (arco) à ESQUERDA
+ *   - Lado lateral à DIREITA
  *
- * Percurso: dedão → dedos menores → borda lateral → calcanhar → borda medial → volta.
+ * Percurso: ponta anterior (curva suave) → borda lateral → calcanhar → borda medial → volta.
  * Para o pé esquerdo, espelha-se em x (100 - x).
  */
 const FOOT_ANCHORS = [
-  // Dedão (hálux) - lado esquerdo/medial
-  [30, 14], [32, 7], [36, 3], [41, 6], [43, 12],
-  // Dedos menores (2º a 5º) - indo para a direita/lateral
-  [48, 7], [51, 12], [55, 7], [59, 12], [63, 8], [67, 13], [71, 10],
+  // Ponta anterior — curva suave contínua (sem dedos individuais)
+  [24, 14], [28, 7], [35, 3], [45, 1], [55, 2], [64, 5], [72, 10],
   // Borda lateral desce (lado direito)
-  [76, 16], [80, 24], [83, 33], [84, 40],
-  // Arco lateral (cintura do pé)
-  [81, 50], [78, 58], [76, 64],
+  [78, 18], [82, 26], [84, 34], [84, 42],
+  // Cintura lateral (arco lateral — menos pronunciado)
+  [82, 50], [79, 58], [76, 64],
   // Calcanhar (arredondado)
-  [73, 74], [67, 84], [58, 92], [50, 96], [42, 92], [33, 84], [27, 74],
-  // Borda medial sobe (lado esquerdo)
-  [24, 64], [22, 54], [20, 44], [19, 34], [21, 24], [25, 18],
+  [72, 73], [66, 82], [58, 90], [50, 94], [42, 90], [34, 82], [28, 73],
+  // Borda medial sobe (lado esquerdo — arco medial mais pronunciado)
+  [24, 64], [21, 56], [19, 48], [18, 40], [19, 32], [21, 24], [23, 18],
 ];
 
 /**
