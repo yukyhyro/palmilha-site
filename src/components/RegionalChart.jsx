@@ -186,6 +186,7 @@ export default function RegionalChart({ samples, sensorNames, currentTime, title
                       key={sensorName}
                       type="monotone"
                       dataKey={sensorName}
+                      name={sensorName}
                       stroke={SENSOR_COLORS[sensorName] || '#888'}
                       strokeWidth={1.5}
                       strokeDasharray={DASH_PATTERNS[sIdx % DASH_PATTERNS.length]}
