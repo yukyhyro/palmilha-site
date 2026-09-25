@@ -43,6 +43,46 @@ const DASH_PATTERNS = [
   '8 2 2 2', // Traço-ponto
 ];
 
+/**
+ * Legenda customizada — substitui a padrão do Recharts para evitar
+ * bug de renderização no texto (ex: "FSR9)" sobreposto).
+ */
+function CustomLegend({ payload }) {
+  if (!payload) return null;
+  return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '16px',
+      paddingTop: '4px',
+      paddingBottom: '2px',
+    }}>
+      {payload.map((entry) => (
+        <span
+          key={entry.value}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '5px',
+            fontSize: '11px',
+            color: 'rgba(255,255,255,0.8)',
+          }}
+        >
+          <span style={{
+            display: 'inline-block',
+            width: '10px',
+            height: '10px',
+            backgroundColor: entry.color,
+            borderRadius: '2px',
+            flexShrink: 0,
+          }} />
+          {entry.value}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 const ZOOM_LEVELS = [
   { label: '1s', value: 1 },
   { label: '5s', value: 5 },
@@ -323,11 +363,7 @@ export default function RegionalChart({ samples, sensorNames, currentTime, title
                     formatter={(val, name) => [`${val.toFixed(2)} kgf`, name]}
                     labelFormatter={(label) => `Tempo: ${label}s`}
                   />
-                  <Legend
-                    wrapperStyle={{ fontSize: 11, paddingTop: 2 }}
-                    iconSize={10}
-                    iconType="square"
-                  />
+                  <Legend content={CustomLegend} />
 
                   {/* Cursor de tempo */}
                   {currentTime != null && (
