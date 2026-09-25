@@ -264,20 +264,64 @@ export default function RegionalChart({ samples, sensorNames, currentTime, title
             >
               ◀
             </button>
-            <input
-              type="range"
-              min={timeRange.min}
-              max={maxSlider}
-              step={0.1}
-              value={windowStart}
-              onChange={handleSlider}
-              style={{
-                flex: '1',
-                minWidth: '120px',
-                accentColor: '#39ff85',
-                cursor: 'pointer',
-              }}
-            />
+            <div style={{
+              flex: '1',
+              minWidth: '120px',
+              position: 'relative',
+              height: '20px',
+              display: 'flex',
+              alignItems: 'center',
+            }}>
+              {/* Trilho de fundo */}
+              <div style={{
+                position: 'absolute',
+                left: 0, right: 0,
+                height: '4px',
+                borderRadius: '2px',
+                background: 'rgba(255,255,255,0.1)',
+              }} />
+              {/* Trilho preenchido */}
+              <div style={{
+                position: 'absolute',
+                left: 0,
+                width: maxSlider > timeRange.min
+                  ? `${((windowStart - timeRange.min) / (maxSlider - timeRange.min)) * 100}%`
+                  : '0%',
+                height: '4px',
+                borderRadius: '2px',
+                background: '#39ff85',
+              }} />
+              <input
+                type="range"
+                min={timeRange.min}
+                max={maxSlider}
+                step={0.1}
+                value={windowStart}
+                onChange={handleSlider}
+                style={{
+                  position: 'absolute',
+                  left: 0, right: 0,
+                  width: '100%',
+                  height: '20px',
+                  margin: 0,
+                  cursor: 'pointer',
+                  opacity: 0,
+                }}
+              />
+              {/* Indicador (thumb) */}
+              <div style={{
+                position: 'absolute',
+                left: maxSlider > timeRange.min
+                  ? `calc(${((windowStart - timeRange.min) / (maxSlider - timeRange.min)) * 100}% - 6px)`
+                  : '0px',
+                width: '12px',
+                height: '12px',
+                borderRadius: '50%',
+                background: '#39ff85',
+                boxShadow: '0 0 4px rgba(57,255,133,0.4)',
+                pointerEvents: 'none',
+              }} />
+            </div>
             <button
               onClick={() => handlePan(1)}
               style={{
