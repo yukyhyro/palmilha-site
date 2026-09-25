@@ -390,7 +390,7 @@ export default function RegionalChart({ samples, sensorNames, currentTime, title
                     tick={{ fontSize: 10, fill: 'rgba(255,255,255,0.5)' }}
                     width={45}
                     label={{
-                      value: 'kgf',
+                      value: 'u.a.',
                       angle: -90,
                       position: 'insideLeft',
                       style: { fill: 'rgba(255,255,255,0.3)', fontSize: 10 },
@@ -404,7 +404,7 @@ export default function RegionalChart({ samples, sensorNames, currentTime, title
                       color: '#fff',
                       fontSize: 11,
                     }}
-                    formatter={(val, name) => [`${val.toFixed(2)} kgf`, name]}
+                    formatter={(val, name) => [`${val.toFixed(2)} u.a.`, name]}
                     labelFormatter={(label) => `Tempo: ${label}s`}
                   />
                   {/* Cursor de tempo */}
