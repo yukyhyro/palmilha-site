@@ -1,7 +1,7 @@
 import React, { useMemo, useState, useCallback } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
-  Tooltip, Legend, ResponsiveContainer, ReferenceLine
+  Tooltip, ResponsiveContainer, ReferenceLine
 } from 'recharts';
 import { getRegionSensors } from '../config/sensorLayout';
 
@@ -363,8 +363,6 @@ export default function RegionalChart({ samples, sensorNames, currentTime, title
                     formatter={(val, name) => [`${val.toFixed(2)} kgf`, name]}
                     labelFormatter={(label) => `Tempo: ${label}s`}
                   />
-                  <Legend content={CustomLegend} />
-
                   {/* Cursor de tempo */}
                   {currentTime != null && (
                     <ReferenceLine
@@ -391,6 +389,8 @@ export default function RegionalChart({ samples, sensorNames, currentTime, title
                   ))}
                 </LineChart>
               </ResponsiveContainer>
+              {/* Legenda fora do Recharts para evitar overlap com eixo X */}
+              <CustomLegend payload={region.sensors.map(s => ({ value: s, color: SENSOR_COLORS[s] || '#888' }))} />
             </div>
           );
         })}
