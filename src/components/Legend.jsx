@@ -17,7 +17,7 @@ export default function Legend({ min, max }) {
       <span className="legend-label">{formatVal(min)}</span>
       <div className="legend-gradient" />
       <span className="legend-label">{formatVal(max)}</span>
-      <span className="legend-unit">kgf</span>
+      <span className="legend-unit">u.a.</span>
     </div>
   );
 }
