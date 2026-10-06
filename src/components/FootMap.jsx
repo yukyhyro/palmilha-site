@@ -179,7 +179,7 @@ export default function FootMap({ side, sensorValues, sensorNames, scale, title 
             }}
           >
             <strong>{tooltip.name}</strong>
-            <span>{tooltip.value.toFixed(2)} kgf</span>
+            <span>{tooltip.value.toFixed(2)} u.a.</span>
           </div>
         )}
       </div>
