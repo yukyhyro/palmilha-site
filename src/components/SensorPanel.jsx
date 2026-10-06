@@ -63,7 +63,7 @@ export default function SensorPanel({ sensorValues, sensorNames, scale }) {
                 {isMax && <span className="sensor-peak-badge">MAX</span>}
               </div>
               <div className="sensor-value">{val.toFixed(2)}</div>
-              <div className="sensor-unit">kgf</div>
+              <div className="sensor-unit">u.a.</div>
               <div className="sensor-bar-container">
                 <div
                   className="sensor-bar"
