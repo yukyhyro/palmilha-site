@@ -32,12 +32,12 @@ export default function StatisticsPanel({ statistics }) {
   const stats = [
     {
       label: 'Pressão Máxima',
-      value: `${statistics.maxPressure} kgf`,
+      value: `${statistics.maxPressure} u.a.`,
       icon: '⬆',
     },
     {
       label: 'Pressão Média',
-      value: `${statistics.meanPressure} kgf`,
+      value: `${statistics.meanPressure} u.a.`,
       icon: '≈',
     },
     {
